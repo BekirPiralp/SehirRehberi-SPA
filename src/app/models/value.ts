@@ -1,4 +1,4 @@
 export class Value{
-    Id!:number;
-    Name!:String;
+    public id!:number;
+    public name!:String;
 }
