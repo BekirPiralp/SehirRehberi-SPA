@@ -1,12 +1,16 @@
-<div>
-  <table>
-    <tr>
-      <td>Id</td>
-      <td>Name</td>
-    </tr>
-    <tr *ngFor="let value of values">
-      <td>{{value.id}}</td>
-      <td>{{value.name}}</td>
-    </tr>
+<div class="container mt-4">
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let value of values">
+        <td>{{ value.id }}</td>
+        <td>{{ value.name }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
