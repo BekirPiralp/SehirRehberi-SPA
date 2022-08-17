@@ -1,1 +1,31 @@
-<p>city works!</p>
+<div class="album py-5 bg-light">
+  <div class="container" >
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+      <div *ngFor="let city of this.cities" class="col" >
+        <div class="card shadow-sm"> 
+          
+          <img class="bd-placeholder-img card-img-top"
+          src="{{this.city.photoUrl}}">
+          <title>{{this.city.name}}</title>
+          <div class="card-body">
+            <h5 class="card-title text-center">{{this.city.name}}</h5>
+            <p class="card-text">
+                {{this.city.description}}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  View
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Edit
+                </button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
