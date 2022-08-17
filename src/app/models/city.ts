@@ -1,8 +1,8 @@
-improt {Photo} from "./photo";
-export City{
-    id:number;
-    name:string;
-    description:string;
-    userId:number;
-    photos:Photo[];
+import {Photo} from "./photo";
+export class City{
+    id!:number;
+    name!:string;
+    description?:string;
+    userId!:number;
+    photos?:Photo[];
 }
