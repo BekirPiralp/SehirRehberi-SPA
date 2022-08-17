@@ -5,9 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
-  declarations: [AppComponent, ValueComponent],
+  declarations: [AppComponent, ValueComponent, NavComponent],
   imports: [BrowserModule,HttpClientModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],

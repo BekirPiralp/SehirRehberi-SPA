@@ -4,7 +4,7 @@
     komut: npm install alertifyjs
 3- Font-Awesome eklendi
     komut: npm install font-awesome
-4- Bootswach eklendi
-    komut: npm install bootswach
+4- Bootswatch eklendi
+    komut: npm install bootswatch
 
 // angular.son içerisine gerekli script ve styller eklenecek
