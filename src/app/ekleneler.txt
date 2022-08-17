@@ -1,0 +1,10 @@
+1- Boostrap eklendi
+    komut: npm install boostrap
+2- Alertifyjs eklendi
+    komut: npm install alertifyjs
+3- Font-Awesome eklendi
+    komut: npm install font-awesome
+4- Bootswach eklendi
+    komut: npm install bootswach
+
+// angular.son içerisine gerekli script ve styller eklenecek
