@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 
@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { CityComponent } from './city/city.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { CityDetailComponent } from './city/city-detail/city-detail.component';
     BrowserModule,
     HttpClientModule,
     NgbModule,
+    HammerModule,
+    NgxGalleryModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

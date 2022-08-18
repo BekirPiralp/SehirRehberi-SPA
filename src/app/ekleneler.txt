@@ -8,3 +8,9 @@
     komut: npm install bootswatch
 
 // angular.son içerisine gerekli script ve styller eklenecek
+
+5- NGX Galery eklendi
+    komut: npm install ngx-gallery --save
+
+6- Hammerjs eklendi
+    komut: npm install hammerjs --save
