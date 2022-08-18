@@ -20,6 +20,6 @@ export class CityService {
   }
 
   getPhotosByCity(cityId:number):Observable<Photo[]>{
-    return this.http.get<Photo[]>(this.path+"Photos/?id="+cityId);
+    return this.http.get<Photo[]>(this.path+"Cities/Photos/"+cityId);
   }
 }
