@@ -70,7 +70,7 @@ export class CityDetailComponent implements OnInit {
         previewAutoPlayPauseOnHover: true,
       },
       {
-        width: '500px',
+        width: '100%',
         height: '400px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,

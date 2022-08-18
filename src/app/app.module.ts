@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { CityComponent } from './city/city.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { CityAddComponent } from './city/city-add/city-add.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
     NavComponent,
     CityComponent,
     CityDetailComponent,
+    CityAddComponent,
   ],
   imports: [
     BrowserModule,
