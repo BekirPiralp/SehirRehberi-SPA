@@ -1,1 +1,59 @@
-<p>city-add works!</p>
+<main role="main">
+  <div class="container">
+    <div class="row">
+      <form [formGroup]="cityAddForm" 
+      (ngSubmit)="createCityInDb()" class="">
+        <h2 class="mt-3 pt-3">Yeni bir şehir ekle</h2>
+        <input
+          type="text"
+          id="nameId"
+          formControlName="name"
+          class="form-control"
+          placeholder="Şehir Adı"
+          autofocus
+        />
+        <span
+          class="help-block text-danger"
+          for="nameId"
+          *ngIf="
+            cityAddForm.get('name')?.hasError('required') &&
+            cityAddForm.get('name')?.touched
+          "
+        >
+          Şehir adı zorunludur
+        </span>
+        <input
+          type="text"
+          id="descriptionId"
+          formControlName="description"
+          class="form-control"
+          placeholder="Şehir Açıklama"
+          autofocus
+        />
+        <span
+          class="help-block text-danger"
+          for="descriptionId"
+          *ngIf="
+            cityAddForm.get('description')?.hasError('required') &&
+            cityAddForm.get('description')?.touched
+          "
+        >
+          Not girmeniz zorunludur
+        </span>
+        <button
+          type="submit"
+          class="btn btn-lg btn-primary btn-block form-control"
+          [disabled]="!cityAddForm.valid"
+        >
+          Kaydet
+        </button>
+        <div class="row" >
+          <h5 class="col algin-self-start "style="background-color: red;">{{ cityAddForm.value | json }}</h5>
+          <!--Veriyi görmek için-->
+          <h5 class="col algin-self-end " style="background-color: blue;">{{ cityAddForm.status | json }}</h5>
+          <!-- Geçerli olup olmaması yani valid için-->
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

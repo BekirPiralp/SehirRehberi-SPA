@@ -34,12 +34,14 @@ export class CityAddComponent implements OnInit {
   }
 
   createCityInDb(){
+    console.log("girdi")
     if(this.cityAddForm.valid){ //veriler hatasız girildi ise
       this.city = Object.assign({
         name:String,
         description:String
       },this.cityAddForm.value)
-
+      console.log("girdi2")
+      console.log(this.city)
       this.city.userId=4; // login olunca alacağız
 
       this._cityService.add(this.city)
