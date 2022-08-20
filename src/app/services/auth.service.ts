@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUser } from '../models/loginUser';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
 import { RegisterUser } from '../models/registerUser';
 
-const KEY_TOKEN: string = 'token';
+const TOKEN_KEY: string = 'token';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +22,10 @@ export class AuthService {
   private _userToken: any;
   private set userToken(val: typeof this._userToken) {
     this._userToken = val;
-    localStorage.setItem(KEY_TOKEN, val);
+    localStorage.setItem(TOKEN_KEY, val);
   }
   public get userToken() {
+    this._userToken = localStorage.getItem(TOKEN_KEY)
     return this._userToken;
   }
 
@@ -57,5 +58,17 @@ export class AuthService {
 
   saveToken(token: typeof this._userToken) {
     this.userToken = token;
+  }
+
+  logOut(){
+    localStorage.removeItem(TOKEN_KEY);
+  }
+
+  loggedIn(){
+    return tokenNotExpired(TOKEN_KEY);
+  }
+
+  getCurrentUserId(){
+    return this.jwtHelper.decodeToken(this.userToken).nameId;
   }
 }
