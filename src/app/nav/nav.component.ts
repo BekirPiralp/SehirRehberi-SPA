@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,4 +13,16 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  drppp(){
+    if(document.getElementById("drp")!.style.display!=="block")
+    {
+      document.getElementById("drp")!.style.display="block";
+      document.getElementById("drp")!.style.zIndex="1";
+      document.getElementById("drp")!.style.position="absolute";
+      document.getElementById("drp")!.style.top="100%";
+      document.getElementById("drp")!.style.left="100%"
+    }else{
+      document.getElementById("drp")!.style.display="none";
+    }
+  }
 }
