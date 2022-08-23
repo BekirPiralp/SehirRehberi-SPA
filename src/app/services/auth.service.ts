@@ -1,10 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginUser } from '../models/loginUser';
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
 import { RegisterUser } from '../models/registerUser';
+//import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
+//import { JwtHelper } from 'angular2-jwt';
+
+const jwtHelper = new JwtHelperService();
 
 const TOKEN_KEY: string = 'token';
 
@@ -16,33 +20,39 @@ export class AuthService {
     private http: HttpClient,
     private _router: Router,
     private _alertifyService: AlertifyService
-  ) {}
+  ) {
+    this.userToken = undefined;
+  }
+  //private jwtHelper:JwtHelper = new JwtHelper();
 
   path: string = 'https://localhost:7084/api/';
-  private _userToken: any;
+  private _userToken: string | undefined;
+
   private set userToken(val: typeof this._userToken) {
     this._userToken = val;
-    localStorage.setItem(TOKEN_KEY, val);
+    localStorage.setItem(TOKEN_KEY, val!);
   }
   public get userToken() {
-    this._userToken = localStorage.getItem(TOKEN_KEY)
+    this._userToken = localStorage.getItem(TOKEN_KEY)?.toString();
     return this._userToken;
   }
 
   decodeToken: any;
-  jwtHelper: JwtHelper = new JwtHelper();
 
   login(loginUser: LoginUser) {
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    this.http
-      .post(this.path + 'Auth/login', loginUser, { headers: headers })
-      .subscribe((data) => {
-        this.userToken = data;
-        this.decodeToken = this.jwtHelper.decodeToken(data.toString());
-        this._alertifyService.basarili('Sisteme giriş yapıldı.');
-        this._router.navigateByUrl('/city');
-      });
+    let headers : HttpHeaders = new HttpHeaders();
+    headers=headers.append("Content-Type","application/json");
+    
+    this.http.post(this.path + 'Auth/login', loginUser,{
+      headers:headers
+    }
+    ).subscribe((data) => {
+      console.log("%cGiriş yapılıyor...","color:green;"); //%c ile yanında optionalparam olarak verilen style'lar işleniyor
+      this.userToken = data.toString()
+      this.decodeToken = jwtHelper.decodeToken(data.toString());
+      this._alertifyService.basarili('Sisteme giriş yapıldı.');
+      this._router.navigateByUrl('/city');
+    });
   }
 
   register(registerUser: RegisterUser) {
@@ -60,15 +70,17 @@ export class AuthService {
     this.userToken = token;
   }
 
-  logOut(){
+  logOut() {
+    console.log('%cÇıkış yapılıyor...','color:red;')
+    this._alertifyService.hata('Çıkış yapılıyor...');
     localStorage.removeItem(TOKEN_KEY);
   }
 
-  loggedIn(){
-    return tokenNotExpired(TOKEN_KEY);
+  loggedIn(): boolean {
+    return this.userToken == null || this.userToken!.toString() =="undefined"  ? false : !jwtHelper.isTokenExpired(this.userToken);
   }
 
-  getCurrentUserId(){
-    return this.jwtHelper.decodeToken(this.userToken).nameId;
+  getCurrentUserId() {
+    return jwtHelper.decodeToken(this.userToken).nameId;
   }
 }

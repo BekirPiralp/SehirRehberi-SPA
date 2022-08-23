@@ -14,6 +14,7 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
 import { CityAddComponent } from './city/city-add/city-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AlertifyService } from './services/alertify.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AlertifyService],
+  providers: [AlertifyService,AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

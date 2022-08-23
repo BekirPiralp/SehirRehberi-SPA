@@ -1,5 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +25,19 @@ export class NavComponent implements OnInit {
     }else{
       document.getElementById("drp")!.style.display="none";
     }
+  }
+
+  loginUser:any={}
+
+  login(){
+    this._authService.login(this.loginUser);
+  }
+
+  logOut(){
+    this._authService.logOut();
+  }
+
+  get isAuthenticated(){
+    return this._authService.loggedIn()
   }
 }

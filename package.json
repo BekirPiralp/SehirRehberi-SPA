@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
     "alertifyjs": "^1.13.1",
@@ -28,8 +29,9 @@
     "bootswatch": "^5.2.0",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "jwt-decode": "^3.1.2",
+    "jwt-expired": "^1.1.2",
     "ngx-gallery-9": "^1.0.6",
-    "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

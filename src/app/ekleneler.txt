@@ -14,3 +14,6 @@
 
 6- Hammerjs eklendi
     komut: npm install hammerjs --save
+
+7- @auth0/angular-jwt
+   komut:  "   "    "   "   @auth0/angular-jwt --save

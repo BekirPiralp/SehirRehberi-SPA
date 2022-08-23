@@ -36,15 +36,15 @@
         <li class="nav-item dropdown">
           <div class="btn-group">
             <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            (click)="drppp()"
-            >Dropdown</a
-          >
-            <div id="drp" class="dropdown-menu " >
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              (click)="drppp()"
+              >Dropdown</a
+            >
+            <div id="drp" class="dropdown-menu">
               <a class="dropdown-item" href="#">Action</a>
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -54,12 +54,50 @@
           </div>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search" />
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-          Search
+      <div *ngIf="!isAuthenticated; then giris;  else cikis">
+      </div>
+        <ng-template #giris>
+          <form
+          
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+          class="d-flex"
+        >
+          <input
+            class="form-control me-sm-2"
+            type="text"
+            name="userName"
+            [(ngModel)]="loginUser.userName"
+            placeholder="Kullanıcı adı"
+            required
+          />
+          <input
+            class="form-control me-sm-2"
+            type="password"
+            name="userPassword"
+            [(ngModel)]="loginUser.password"
+            placeholder="Şifre"
+            required
+          />
+          <button
+            class="btn btn-secondary my-2 my-sm-0"
+            [disabled]="!loginForm.valid"
+            type="submit"
+          >
+            Giriş
+          </button>
+        </form>
+        </ng-template>
+        <ng-template #cikis>
+          <button
+          
+          (click)="this.logOut()"
+          class="btn btn-secondary my2 my-sm-0"
+        >
+          Çıkış
         </button>
-      </form>
+        </ng-template>
+      
     </div>
   </div>
 </nav>
