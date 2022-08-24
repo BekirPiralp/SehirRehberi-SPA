@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { FileUploadModule} from 'ng2-file-upload'
 
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -17,6 +18,7 @@ import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { PhotoComponent } from './photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { NgxEditorModule } from 'ngx-editor';
     CityDetailComponent,
     CityAddComponent,
     RegisterComponent,
+    PhotoComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { NgxEditorModule } from 'ngx-editor';
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule
+    NgxEditorModule,
+    FileUploadModule
   ],
   providers: [AlertifyService,AuthService],
   bootstrap: [AppComponent],

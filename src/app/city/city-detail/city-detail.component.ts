@@ -97,7 +97,7 @@ export class CityDetailComponent implements OnInit {
     this.galleryImages = this.getImageFormatNgxGalery();
   }
 
-  safeHtml(html:any){
+  safeHtml(html:string){
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 }

@@ -9,6 +9,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { City } from 'src/app/models/city';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-city-add',
@@ -20,6 +21,7 @@ export class CityAddComponent implements OnInit, OnDestroy {
   constructor(
     private _cityService: CityService,
     private _formBuilder: FormBuilder,
+    private _auth:AuthService
   ) {
   }
 
@@ -72,7 +74,7 @@ export class CityAddComponent implements OnInit, OnDestroy {
         },
         this.cityAddForm.value
       );
-      this.city.userId = 4; // login olunca alacağız
+      this.city.userId = this._auth.getCurrentUserId(); // login olunca alacağız
 
       this._cityService.add(this.city);
     }

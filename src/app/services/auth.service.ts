@@ -28,7 +28,7 @@ export class AuthService {
   path: string = 'https://localhost:7084/api/';
   private _userToken: string | undefined;
 
-  private set userToken(val: typeof this._userToken) {
+  public set userToken(val: typeof this._userToken) {
     this._userToken = val;
     localStorage.setItem(TOKEN_KEY, val!);
   }
@@ -81,6 +81,8 @@ export class AuthService {
   }
 
   getCurrentUserId() {
-    return jwtHelper.decodeToken(this.userToken).nameId;
+     var a= jwtHelper.decodeToken(this.userToken)['nameid'];
+    console.log(a);
+    return a;
   }
 }

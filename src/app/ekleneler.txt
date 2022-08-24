@@ -23,3 +23,6 @@
 
 9- ngx-bootstrap
    komut: npm install ngx-bootstrap
+
+10- ng2-file-upload
+    komut: npm install ng2-file-upload --save
