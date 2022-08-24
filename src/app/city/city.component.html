@@ -9,9 +9,9 @@
           <title>{{this.city.name}}</title>
           <div class="card-body">
             <h5 class="card-title text-center">{{this.city.name}}</h5>
-            <p class="card-text">
-                {{this.city.description}}
-            </p>
+            <div class="card-text" [innerHtml]='safeHtml(city.description!)' >
+              
+            </div>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/cityDetail/{{this.city.id}}">

@@ -17,3 +17,9 @@
 
 7- @auth0/angular-jwt
    komut:  "   "    "   "   @auth0/angular-jwt --save
+
+8- ngx-editor
+   komut: npm install ngx-editor
+
+9- ngx-bootstrap
+   komut: npm install ngx-bootstrap

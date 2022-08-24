@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import {
   NgxGalleryImage,
@@ -18,7 +19,8 @@ import { CityService } from 'src/app/services/city.service';
 export class CityDetailComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _cityService: CityService
+    private _cityService: CityService,
+    private _sanitizer:DomSanitizer
   ) {}
 
   city!: City;
@@ -93,5 +95,9 @@ export class CityDetailComponent implements OnInit {
     ];
 
     this.galleryImages = this.getImageFormatNgxGalery();
+  }
+
+  safeHtml(html:any){
+    return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 }

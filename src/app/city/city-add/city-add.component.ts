@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/city.service';
+import { Editor, Toolbar} from 'ngx-editor';
+import { schema } from 'ngx-editor/schema';
 import {
   FormGroup,
   FormControl,
@@ -12,16 +14,30 @@ import { City } from 'src/app/models/city';
   selector: 'app-city-add',
   templateUrl: './city-add.component.html',
   styleUrls: ['./city-add.component.css'],
-  providers: [CityService],
+  providers: [CityService,],
 })
-export class CityAddComponent implements OnInit {
+export class CityAddComponent implements OnInit, OnDestroy {
   constructor(
     private _cityService: CityService,
-    private _formBuilder: FormBuilder
-  ) {}
+    private _formBuilder: FormBuilder,
+  ) {
+  }
 
   city: City = new City();
   cityAddForm!: FormGroup;
+  editor!: Editor;
+  toolbar: Toolbar = [
+    // default value
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ['horizontal_rule', 'format_clear'],
+  ];
 
   createCityForm() {
     this.cityAddForm = this._formBuilder.group({
@@ -30,18 +46,35 @@ export class CityAddComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.createCityForm()
+    this.createCityForm();
+    this.editor = new Editor({
+      content: '',
+      plugins: [],
+      schema,
+      nodeViews: {},
+      history: true,
+      keyboardShortcuts: true,
+      inputRules: true,
+    });
   }
 
-  createCityInDb(){
-    if(this.cityAddForm.valid){ //veriler hatasız girildi ise
-      this.city = Object.assign({
-        name:String,
-        description:String
-      },this.cityAddForm.value)
-      this.city.userId=4; // login olunca alacağız
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
 
-      this._cityService.add(this.city)
+  createCityInDb() {
+    if (this.cityAddForm.valid) {
+      //veriler hatasız girildi ise
+      this.city = Object.assign(
+        {
+          name: String,
+          description: String,
+        },
+        this.cityAddForm.value
+      );
+      this.city.userId = 4; // login olunca alacağız
+
+      this._cityService.add(this.city);
     }
   }
 }

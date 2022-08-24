@@ -15,6 +15,8 @@ import { CityAddComponent } from './city/city-add/city-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './register/register.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AuthService } from './services/auth.service';
     CityComponent,
     CityDetailComponent,
     CityAddComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,11 @@ import { AuthService } from './services/auth.service';
     NgxGalleryModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxEditorModule
   ],
   providers: [AlertifyService,AuthService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

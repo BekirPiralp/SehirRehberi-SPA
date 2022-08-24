@@ -5,39 +5,36 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  constructor(private _authService: AuthService) {}
 
-  constructor(private _authService:AuthService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  drppp(){
-    if(document.getElementById("drp")!.style.display!=="block")
-    {
-      document.getElementById("drp")!.style.display="block";
-      document.getElementById("drp")!.style.zIndex="1";
-      document.getElementById("drp")!.style.position="absolute";
-      document.getElementById("drp")!.style.top="100%";
-      document.getElementById("drp")!.style.left="100%"
-    }else{
-      document.getElementById("drp")!.style.display="none";
+  drppp() {
+    if (document.getElementById('drp')!.style.display !== 'block') {
+      document.getElementById('drp')!.style.display = 'block';
+      document.getElementById('drp')!.style.zIndex = '1';
+      document.getElementById('drp')!.style.position = 'absolute';
+      document.getElementById('drp')!.style.top = '100%';
+      document.getElementById('drp')!.style.left = '100%';
+    } else {
+      document.getElementById('drp')!.style.display = 'none';
     }
   }
 
-  loginUser:any={}
+  loginUser: any = {};
 
-  login(){
+  login() {
     this._authService.login(this.loginUser);
   }
 
-  logOut(){
+  logOut() {
     this._authService.logOut();
   }
 
-  get isAuthenticated(){
-    return this._authService.loggedIn()
+  get isAuthenticated() {
+    return this._authService.loggedIn();
   }
 }
